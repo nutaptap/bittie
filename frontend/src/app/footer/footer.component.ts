@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-  <header>
+  <footer>
   <p>Footer</p>
-  </header>
+  </footer>
   `,
   styleUrl: './footer.component.css'
 })

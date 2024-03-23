@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
   <app-header />
+  <h1>Potato</h1>
   <router-outlet />
   <app-footer>
   `,
