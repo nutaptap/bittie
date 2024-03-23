@@ -5,6 +5,11 @@
     background-color: rgb(238, 231, 231);
 }
 
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
 h1{
     color: black;
     font-weight: 400;
