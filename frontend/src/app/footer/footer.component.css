@@ -1,4 +1,47 @@
 
 :host{
     margin-top: auto;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    width: 1100px;
+    padding: 20px;
+    user-select: none;
+}
+
+a {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--eerie-black);
+    font-weight: 500;
+    transition: all 0.1s ease-in;
+}
+
+a:hover {
+    color: black;
+}
+
+svg {
+    margin-top: 6px;
+    margin-right: 3px;
+}
+
+.nuria {
+    font-size: 0.9rem;
+    color: var(--davys-gray);
+    margin-left: 33%;
+}
+
+.nuria {
+    span {
+        color: var(--light-coral);
+    }
 }

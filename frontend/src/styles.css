@@ -1,17 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
-    font-family: "Inter", Roboto, sans-serif;
-    background-color: rgb(238, 231, 231);
+    --seashell: #f5eeec;
+    --eerie-black: rgb(41, 39, 39);
+    --davys-gray: rgb(59, 56, 63);
+    --royal-purple: #8167aaff;
+    --light-coral: #ed7474ff;
+    --powder-blue: rgb(160, 171, 250);
+    --apricot: #fbd1b1ff;
+
+  font-family: "Inter", Roboto, sans-serif;
+  background-color: var(--seashell);
 }
 
 body {
-    min-height: 100vh;
-    margin: 0;
+  min-height: 100vh;
+  margin: 0;
 }
 
-h1{
-    color: black;
-    font-weight: 400;
-    margin: 0;
-  }
+h1 {
+  color: var(--eerie-black);
+  font-weight: 400;
+  margin: 0;
+}
