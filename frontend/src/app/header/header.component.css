@@ -1,0 +1,82 @@
+:host {
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1100px;
+  padding: 20px;
+  user-select: none;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+img {
+  height: 40px;
+  margin-right: 5px;
+}
+
+span {
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+}
+
+.login-button {
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--eerie-black);
+  letter-spacing: 1.5px;
+  padding: 8px 20px;
+  margin-left: 20px;
+  background-color: var(--seashell);
+  border-radius: 50px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-button::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  bottom: -1px;
+  border-radius: 50px;
+  background: linear-gradient(25deg, var(--royal-purple), var(--light-coral));
+  z-index: -1;
+}
+
+button:hover {
+  background-color: var(--light);
+  color: black;
+}
+
+.user {
+  border-radius: 50%;
+  border: none;
+  padding: 7px;
+  display: flex;
+  background-color: var(--seashell);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  img {
+    height: 35px;
+    border-radius: 50%;
+    margin: 0;
+  }
+}
+
+.user:hover {
+  background-color: var(--light);
+}

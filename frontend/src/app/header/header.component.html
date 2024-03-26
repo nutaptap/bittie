@@ -1,0 +1,16 @@
+<header>
+  <div>
+    <img src="../assets/bittie.svg" />
+    <span>bittie</span>
+  </div>
+  @if (isLoggedIn) {
+  <button class="user">
+    <img src="../assets/cat.jpg" />
+  </button>
+  } @else {
+  <div>
+    <button class="login-button">log in</button>
+    <button class="login-button">sign up</button>
+  </div>
+  }
+</header>
