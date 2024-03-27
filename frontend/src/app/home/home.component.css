@@ -43,15 +43,18 @@ div {
 
 label,
 span {
-  color: var(--davys-gray);
+  color: var(--eerie-black);
   font-size: 0.9rem;
   letter-spacing: 1.4px;
   margin-left: 5px;
 }
 
 input {
-  background-color: var(--seashell);
+  background-color: transparent;
+  color: var(--eerie-black);
+  letter-spacing: 1px;
   border: none;
+  outline: 1px solid var(--davys-gray);
   padding: 8px 15px;
   border-radius: 10px;
   box-shadow: inset -5px -5px 9px #ffffff73, inset 3px 3px 15px #5e68794d;
@@ -60,7 +63,7 @@ input {
 }
 
 input:focus {
-  outline: none;
+  outline: 1px solid var(--eerie-black);
   background-color: var(--lighter);
 }
 
