@@ -1,5 +1,98 @@
 :host {
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+  margin-top: auto;
+  padding-bottom: 8px;
+  width: 42vw;
+  min-width: 400px;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.custom-container {
+  flex-direction: row;
+  align-items: center;
+
+  span {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+
+  input {
+    margin-bottom: 0;
+  }
+}
+
+label,
+span {
+  color: var(--davys-gray);
+  font-size: 0.9rem;
+  letter-spacing: 1.4px;
+  margin-left: 5px;
+}
+
+input {
+  background-color: var(--seashell);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  box-shadow: inset -5px -5px 9px #ffffff73, inset 3px 3px 15px #5e68794d;
+  margin-bottom: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  background-color: var(--lighter);
+}
+
+button {
+  align-self: center;
+  color: var(--royal-purple);
+  background-color: var(--seashell);
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 50px;
+  box-shadow: -5px -5px 9px #ffffff73, 5px 5px 15px #5e68794d;
+  margin-top: 70px;
+  transition: all 0.3s ease-in-out;
+
+  svg {
+    height: 16px;
+    margin-top: 3px;
+  }
+
+  span {
+    font-size: 1.2rem;
+    color: var(--eerie-black);
+  }
+}
+
+button:hover {
+  background-color: var(--light);
+  box-shadow: -5px -5px 9px #ffffff73, 5px 5px 20px #5e68794d;
+
+  span {
+    color: black;
+  }
 }

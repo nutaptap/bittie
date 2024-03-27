@@ -6,13 +6,7 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'app-home',
   standalone: true,
   imports: [HeaderComponent, FooterComponent],
-  template: `
-  <main>
-   <h1>Home</h1>
-  </main>
-  `,
-  styleUrl: './home.component.css'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}
