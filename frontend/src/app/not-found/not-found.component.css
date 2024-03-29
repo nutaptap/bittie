@@ -9,3 +9,12 @@ main {
   flex-direction: column;
   gap: 2rem;
 }
+
+span {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.oops {
+  font-size: 3rem;
+}
