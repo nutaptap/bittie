@@ -50,7 +50,7 @@ span {
 }
 
 input {
-  background-color: transparent;
+  background-color: var(--seashell);
   color: var(--eerie-black);
   letter-spacing: 1px;
   border: none;
