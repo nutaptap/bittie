@@ -38,11 +38,49 @@ export class HomeComponent {
       });
   }
 
+  postData(destination: string, custom?: string) {
+    const postData = {
+      custom_url: custom || undefined,
+      destination_url: destination,
+    };
+    this.subscription = this.httpClient
+      .post('http://localhost:1238/', postData)
+      .subscribe({
+        next: (response: any) => {
+          console.log('Post succesful: ', response.data);
+          this.saveData(
+            response.data.id,
+            response.data.destination_url,
+            response.data.custom_url || undefined
+          );
+        },
+        error: (error) => {
+          console.error('Error posing data: ', error);
+        },
+      });
+  }
+
+  saveData(id: number, destination: string, custom?: string) {
+    const saveData = {
+      id: id,
+      custom_url: custom || undefined,
+      destination_url: destination,
+      saved_urls: true,
+    };
+
+    const saveDataString = JSON.stringify(saveData);
+
+    localStorage.setItem(String(id), saveDataString);
+  }
+
   submitForm() {
     if (this.urlForm.value.destination !== '') {
       console.log('Url created', this.urlForm.value.destination);
-      this.fetchData();
       this.formSubmitted = true;
+      this.postData(
+        this.urlForm.value.destination!,
+        this.urlForm.value.custom || undefined
+      );
       return false;
     } else {
       console.log('Missing destination url');
