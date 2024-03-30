@@ -68,6 +68,7 @@ input:focus {
 }
 
 button {
+  cursor: pointer;
   align-self: center;
   color: var(--royal-purple);
   background-color: var(--seashell);
@@ -98,4 +99,27 @@ button:hover {
   span {
     color: black;
   }
+}
+
+.destination-container {
+  position: relative;
+}
+
+.error-message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: var(--light-coral);
+  color: white;
+  padding: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 50px;
+  position: absolute;
+  left: 360px;
+  top: 24px;
+  min-width: 120px;
+}
+
+.error {
+  outline: 2px solid var(--light-coral);
 }

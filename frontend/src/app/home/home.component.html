@@ -1,19 +1,40 @@
 <main>
-  <form>
+  <form [formGroup]="urlForm" (ngSubmit)="submitForm()">
     <img class="background" src="../assets/background.svg" />
     <div>
-      <div>
+      <div class="destination-container">
         <label for="destination">destination</label>
-        <input type="text" id="destination" name="destination" required />
+        <input
+          type="text"
+          id="destination"
+          name="destination"
+          formControlName="destination"
+          required
+          class="{{
+            urlForm.get('destination')?.hasError('required') &&
+            (urlForm.get('destination')?.touched || formSubmitted)
+              ? 'error'
+              : ''
+          }}"
+        />
+        @if(urlForm.get('destination')?.hasError('required') &&
+        urlForm.get('destination')?.touched || formSubmitted) {
+        <span class="error-message">Add a valid url</span>
+        } @else {<span></span>}
       </div>
       <div class="custom-container">
         <span>bittie.eu /</span>
         <div>
           <label for="custom">custom link (optional)</label>
-          <input type="text" id="custom" name="custom" />
+          <input
+            type="text"
+            id="custom"
+            name="custom"
+            formControlName="custom"
+          />
         </div>
       </div>
-      <button>
+      <button type="submit">
         <svg
           className="w-4 h-4 text-text mr-[2px]"
           xmlns="http://www.w3.org/2000/svg"
