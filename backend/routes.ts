@@ -27,13 +27,16 @@ router.post("/", async (req, res) => {
 
     const { data, error } = await supabase
       .from("url_mappings")
-      .insert(requestData);
+      .insert(requestData)
+      .select("*");
 
     if (error) {
       throw error;
     }
 
-    res.json({ message: "Data inserted successfully", data });
+    const insertedData = data[0];
+
+    res.json({ message: "Data inserted successfully", data: insertedData });
   } catch (error: any) {
     res
       .status(500)
