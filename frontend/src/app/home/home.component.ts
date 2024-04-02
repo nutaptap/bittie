@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent {
   data: any[] = [];
+  local: any[] = [];
   private subscription: Subscription | undefined;
   formSubmitted = false;
 
@@ -23,6 +24,35 @@ export class HomeComponent {
   });
 
   constructor(private httpClient: HttpClient) {}
+
+  ngOnInit() {
+    this.fetchLocalStorageData();
+  }
+
+  copyData(data: any) {
+    navigator.clipboard
+      .writeText(data)
+      .then(() => {
+        console.log('Data copied to clipboard:', data);
+      })
+      .catch((error) => {
+        console.error('Unable to copy data to clipboard:', error);
+      });
+  }
+
+  fetchLocalStorageData() {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key) {
+        const dataString = localStorage.getItem(key);
+        if (dataString) {
+          const data = JSON.parse(dataString);
+          this.local.push(data);
+        }
+      }
+    }
+    console.log('Local data fetched:', this.local);
+  }
 
   fetchData() {
     this.subscription = this.httpClient

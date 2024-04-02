@@ -1,10 +1,10 @@
 :host {
-  margin-top: auto;
   display: flex;
   justify-content: center;
 }
 
 form {
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -78,7 +78,7 @@ button {
   padding: 8px 15px;
   border-radius: 50px;
   box-shadow: -5px -5px 9px #ffffff73, 5px 5px 15px #5e68794d;
-  margin-top: 70px;
+  margin-top: 50px;
   transition: all 0.3s ease-in-out;
 
   svg {
@@ -122,4 +122,53 @@ button:hover {
 
 .error {
   outline: 2px solid var(--light-coral);
+}
+
+article {
+  margin-top: 90px;
+  margin-bottom: 90px;
+  text-align: center;
+}
+
+.link-button,
+.copy-button {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--eerie-black);
+  letter-spacing: 1.2px;
+  padding: 8px 20px;
+}
+
+.link-button {
+  width: 300px;
+}
+
+.copy-button {
+  padding: 8px;
+  margin-left: 8px;
+}
+
+.link-container {
+  flex-direction: row;
+  margin-bottom: 25px;
+}
+
+.sign-up {
+  margin-top: 35px;
+
+  span {
+    color: var(--davys-gray);
+  }
+}
+
+a {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all 0.2s ease-in-out;
+}
+
+.sign-up:hover {
+  a {
+    color: black;
+  }
 }
