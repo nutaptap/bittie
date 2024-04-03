@@ -1,5 +1,81 @@
 :host {
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+  margin-top: auto;
+  padding-bottom: 8px;
+  width: 42vw;
+  min-width: 400px;
+  opacity: 75%;
+}
+
+.container {
+  background-color: var(--seashell);
+  padding: 70px;
+  border-radius: 50px;
+  box-shadow: -5px -5px 9px #ffffff73, 5px 5px 15px #5e687936;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+h1 {
+  width: 330px;
+  margin-bottom: 10px;
+}
+
+span {
+  font-size: 0.9rem;
+
+  a {
+    cursor: pointer;
+    color: var(--davys-gray);
+    text-decoration: underline;
+    transition: all 0.3s ease-in-out;
+  }
+
+  a:hover {
+    color: black;
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--eerie-black);
+  letter-spacing: 1.5px;
+  padding: 8px;
+  background-color: var(--seashell);
+  border-radius: 50px;
+  border: var(--royal-purple) 1px solid;
+  transition: all 0.3s ease-in-out;
+
+  span {
+    font-size: 1rem;
+  }
+}
+
+button:hover {
+  background-color: var(--light);
+  color: black;
+}
+
+svg {
+  margin-right: 10px;
 }

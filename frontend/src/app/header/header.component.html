@@ -1,5 +1,5 @@
 <header>
-  <div>
+  <div (click)="router.navigate(['/'])">
     <img src="../assets/bittie.svg" />
     <span>bittie</span>
   </div>
@@ -9,8 +9,8 @@
   </button>
   } @else {
   <div>
-    <button class="login-button">log in</button>
-    <button class="login-button">sign up</button>
+    <button (click)="navigate('login')" class="login-button">log in</button>
+    <button (click)="navigate('signup')" class="login-button">sign up</button>
   </div>
   }
 </header>

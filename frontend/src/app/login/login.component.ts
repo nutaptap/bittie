@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
-  template: `
-  <main>
-   <h1>Log in</h1>
-  </main>
-  `,
-  styleUrl: './login.component.css'
+  imports: [],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  destination: string = '';
 
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.destination = params['destination'] || 'login';
+    });
+  }
 }
