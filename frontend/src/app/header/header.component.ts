@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  isLoggedIn = false;
+  @Input() loggedIn = false;
+  @Input() photoURL: string | undefined;
 
   constructor(public router: Router) {}
 

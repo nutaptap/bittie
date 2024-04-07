@@ -78,17 +78,27 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check if user information exists in session storage
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+      this.loggedIn = true;
+    }
+
+    // Subscribe to authentication state changes
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = user != null;
+      // Store user information in session storage
+      sessionStorage.setItem('user', JSON.stringify(user));
+      console.log(user);
+    });
+
     this.fetchData().subscribe((data: any) => {
       this.data = data;
       this.findCustom();
       this.findId();
       this.redirect();
-    });
-
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = user != null;
-      console.log(user);
     });
   }
 }

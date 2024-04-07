@@ -3,11 +3,15 @@
     <img src="../assets/bittie.svg" />
     <span>bittie</span>
   </div>
-  @if (isLoggedIn) {
+  @if (loggedIn && photoURL) {
+  <button class="user">
+    <img [src]="photoURL" alt="User Photo" />
+  </button>
+  } @if(loggedIn && !photoURL) {
   <button class="user">
     <img src="../assets/cat.jpg" />
   </button>
-  } @else {
+  } @if (!loggedIn) {
   <div>
     <button (click)="navigate('login')" class="login-button">log in</button>
     <button (click)="navigate('signup')" class="login-button">sign up</button>

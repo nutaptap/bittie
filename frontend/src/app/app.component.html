@@ -1,6 +1,5 @@
 @if(!loading) {
-<app-header />
-<!-- <asl-google-signin-button type="icon" size="medium"></asl-google-signin-button> -->
+<app-header [photoURL]="user.photoUrl" [loggedIn]="loggedIn" />
 <router-outlet />
 <app-footer class="footer" />
 }

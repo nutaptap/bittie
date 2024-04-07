@@ -31,6 +31,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 45px;
+  text-align: center;
 }
 
 h1 {
@@ -78,4 +79,10 @@ button:hover {
 
 svg {
   margin-right: 10px;
+}
+
+asl-google-signin-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
