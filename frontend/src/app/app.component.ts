@@ -6,6 +6,12 @@ import { Observable } from 'rxjs';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import {
+  SocialLoginModule,
+  SocialAuthService,
+  SocialUser,
+  GoogleSigninButtonModule,
+} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +22,15 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent,
     CommonModule,
     HttpClientModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  user!: SocialUser;
+  loggedIn!: boolean;
   httpClient = inject(HttpClient);
   loading = true;
   data: any[] = [];
@@ -28,8 +38,13 @@ export class AppComponent implements OnInit {
   customUrl: string | null = null;
   idUrl: string | null = null;
 
-  constructor(private location: Location) {
+  constructor(
+    private location: Location,
+    private authService: SocialAuthService,
+    httpClient: HttpClient
+  ) {
     this.currentUrl = this.location.path().substring(1);
+    this.httpClient = httpClient;
   }
 
   fetchData(): Observable<any> {
@@ -68,6 +83,12 @@ export class AppComponent implements OnInit {
       this.findCustom();
       this.findId();
       this.redirect();
+    });
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = user != null;
+      console.log(user);
     });
   }
 }
