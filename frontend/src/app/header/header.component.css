@@ -80,3 +80,13 @@ button:hover {
 .user:hover {
   background-color: var(--light);
 }
+
+.container {
+  position: relative;
+}
+
+.logout {
+  position: absolute;
+  top: 60px;
+  right: 0;
+}

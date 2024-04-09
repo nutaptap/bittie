@@ -1,5 +1,9 @@
 @if(!loading) {
-<app-header [photoURL]="user.photoUrl" [loggedIn]="loggedIn" />
+<app-header
+  (logoutEvent)="handleLogout($event)"
+  [photoURL]="user?.photoUrl"
+  [loggedIn]="loggedIn"
+/>
 <router-outlet />
 <app-footer class="footer" />
 }

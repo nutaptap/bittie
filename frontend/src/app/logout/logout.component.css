@@ -1,0 +1,29 @@
+article {
+  background-color: var(--seashell);
+  border-radius: 10px;
+  padding: 25px 18px;
+  box-shadow: -5px -5px 9px #ffffff50, 5px 5px 15px #5e687931;
+  width: max-content;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--eerie-black);
+  letter-spacing: 1.5px;
+  padding: 8px 12px;
+  background-color: var(--seashell);
+  border-radius: 50px;
+  border: var(--royal-purple) 1px solid;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.2rem;
+  color: var(--eerie-black);
+  letter-spacing: 1.2px;
+}
+
+button:hover {
+  background-color: var(--light);
+  color: black;
+}

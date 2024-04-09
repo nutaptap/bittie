@@ -4,13 +4,18 @@
     <span>bittie</span>
   </div>
   @if (loggedIn && photoURL) {
-  <button class="user">
-    <img [src]="photoURL" alt="User Photo" />
-  </button>
-  } @if(loggedIn && !photoURL) {
-  <button class="user">
-    <img src="../assets/cat.jpg" />
-  </button>
+  <div class="container">
+    <button (click)="handleModal()" class="user">
+      <img [src]="photoURL" alt="User Photo" />
+    </button>
+    @if (logoutModal) {
+    <app-logout
+      (modalEvent)="handleModalEvent()"
+      (logoutEvent)="handleLogout($event)"
+      class="logout"
+    />
+    }
+  </div>
   } @if (!loggedIn) {
   <div>
     <button (click)="navigate('login')" class="login-button">log in</button>

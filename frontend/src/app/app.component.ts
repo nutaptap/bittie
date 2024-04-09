@@ -29,8 +29,8 @@ import {
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  user!: SocialUser;
-  loggedIn!: boolean;
+  user: SocialUser | undefined;
+  loggedIn: boolean = false;
   httpClient = inject(HttpClient);
   loading = true;
   data: any[] = [];
@@ -78,20 +78,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check if user information exists in session storage
+    console.log(this.loggedIn);
+    console.log(this.user);
     const storedUser = sessionStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
       this.loggedIn = true;
     }
 
-    // Subscribe to authentication state changes
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = user != null;
-      // Store user information in session storage
       sessionStorage.setItem('user', JSON.stringify(user));
-      console.log(user);
     });
 
     this.fetchData().subscribe((data: any) => {
@@ -100,5 +98,12 @@ export class AppComponent implements OnInit {
       this.findId();
       this.redirect();
     });
+  }
+
+  handleLogout(event: void) {
+    console.log('App: User logged out');
+    this.user = undefined;
+    this.loggedIn = false;
+    sessionStorage.removeItem('user');
   }
 }
