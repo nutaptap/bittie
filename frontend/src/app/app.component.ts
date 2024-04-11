@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Injectable } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import {
   SocialUser,
   GoogleSigninButtonModule,
 } from '@abacritt/angularx-social-login';
+import { UserDataService } from './user-data.service';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +38,9 @@ export class AppComponent implements OnInit {
   currentUrl: string = '';
   customUrl: string | null = null;
   idUrl: string | null = null;
+
+  userService = inject(UserDataService);
+  id: string | undefined = '';
 
   constructor(
     private location: Location,
@@ -98,6 +102,11 @@ export class AppComponent implements OnInit {
       this.findId();
       this.redirect();
     });
+
+    if (this.loggedIn) {
+      this.userService.id = this.user?.id;
+      this.id = this.userService.id;
+    }
   }
 
   handleLogout(event: void) {

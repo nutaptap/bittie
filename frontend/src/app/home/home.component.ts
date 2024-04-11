@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,9 @@ export class HomeComponent {
   private subscription: Subscription | undefined;
   formSubmitted = false;
 
+  userService = inject(UserDataService);
+  id: string | undefined = this.userService.id;
+
   urlForm = new FormGroup({
     destination: new FormControl('', Validators.required),
     custom: new FormControl(''),
@@ -27,6 +31,7 @@ export class HomeComponent {
 
   ngOnInit() {
     this.fetchLocalStorageData();
+    this.fetchData();
   }
 
   copyData(data: any) {
