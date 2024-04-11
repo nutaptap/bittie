@@ -14,7 +14,7 @@ import {
 })
 export class LogoutComponent {
   @Output() logoutEvent = new EventEmitter<void>();
-  @Output() modalEvent = new EventEmitter<void>();
+  /* @Output() modalEvent = new EventEmitter<void>(); */
 
   constructor(private elementRef: ElementRef) {}
 
@@ -22,14 +22,14 @@ export class LogoutComponent {
     this.logoutEvent.emit();
   }
 
-  modal() {
+  /* modal() {
     this.modalEvent.emit();
-  }
+  } */
 
-  @HostListener('document:click', ['$event'])
+  /* @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.modal();
     }
-  }
+  } */
 }

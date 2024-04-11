@@ -1,4 +1,10 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  HostListener,
+} from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
 import { LogoutComponent } from '../logout/logout.component';
@@ -32,7 +38,11 @@ export class HeaderComponent {
     this.logoutEvent.emit();
   }
 
-  handleModalEvent(event: void) {
-    this.handleModal();
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    const container = document.querySelector('.container');
+    if (container && !container.contains(event.target as Node)) {
+      this.handleModal();
+    }
   }
 }

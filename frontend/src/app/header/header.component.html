@@ -9,11 +9,7 @@
       <img [src]="photoURL" alt="User Photo" />
     </button>
     @if (logoutModal) {
-    <app-logout
-      (modalEvent)="handleModalEvent()"
-      (logoutEvent)="handleLogout($event)"
-      class="logout"
-    />
+    <app-logout (logoutEvent)="handleLogout($event)" class="logout" />
     }
   </div>
   } @if (!loggedIn) {
