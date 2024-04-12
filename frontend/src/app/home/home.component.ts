@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { UserDataService } from '../user-data.service';
+import { userId } from '../user.signal';
 
 @Component({
   selector: 'app-home',
@@ -22,14 +22,9 @@ export class HomeComponent {
     destination: new FormControl('', Validators.required),
     custom: new FormControl(''),
   });
-  userService: string | undefined;
+  userId = userId;
 
-  constructor(
-    private httpClient: HttpClient,
-    private userDataService: UserDataService
-  ) {
-    this.userService = this.userDataService.getId();
-  }
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
     this.fetchLocalStorageData();

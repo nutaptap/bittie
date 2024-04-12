@@ -1,8 +1,8 @@
-import { Component, OnInit, inject, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {
@@ -11,7 +11,7 @@ import {
   SocialUser,
   GoogleSigninButtonModule,
 } from '@abacritt/angularx-social-login';
-import { UserDataService } from './user-data.service';
+import { userId } from './user.signal';
 
 @Component({
   selector: 'app-root',
@@ -36,18 +36,16 @@ export class AppComponent implements OnInit {
   currentUrl: string = '';
   customUrl: string | null = null;
   idUrl: string | null = null;
-
-  userService: string | undefined;
+  userId = userId;
 
   constructor(
     private location: Location,
     private authService: SocialAuthService,
-    private userDataService: UserDataService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
   ) {
     this.currentUrl = this.location.path().substring(1);
     this.httpClient = httpClient;
-    this.userService = this.userDataService.getId();
   }
 
   fetchData(): Observable<any> {
@@ -81,8 +79,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.loggedIn);
-    console.log(this.user);
     const storedUser = sessionStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
@@ -93,6 +89,9 @@ export class AppComponent implements OnInit {
       this.user = user;
       this.loggedIn = user != null;
       sessionStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/']).then(() => {
+        location.reload();
+      });
     });
 
     this.fetchData().subscribe((data: any) => {
@@ -103,14 +102,14 @@ export class AppComponent implements OnInit {
     });
 
     if (this.loggedIn) {
-      this.userDataService.setId(this.user?.id);
+      this.userId.set(this.user?.id);
     }
   }
 
   handleLogout(event: void) {
-    console.log('App: User logged out');
     this.user = undefined;
     this.loggedIn = false;
     sessionStorage.removeItem('user');
+    location.reload();
   }
 }
