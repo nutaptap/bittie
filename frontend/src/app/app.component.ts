@@ -2,7 +2,6 @@ import { Component, OnInit, inject, Injectable } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -32,23 +31,23 @@ import { UserDataService } from './user-data.service';
 export class AppComponent implements OnInit {
   user: SocialUser | undefined;
   loggedIn: boolean = false;
-  httpClient = inject(HttpClient);
   loading = true;
   data: any[] = [];
   currentUrl: string = '';
   customUrl: string | null = null;
   idUrl: string | null = null;
 
-  userService = inject(UserDataService);
-  id: string | undefined = '';
+  userService: string | undefined;
 
   constructor(
     private location: Location,
     private authService: SocialAuthService,
-    httpClient: HttpClient
+    private userDataService: UserDataService,
+    private httpClient: HttpClient
   ) {
     this.currentUrl = this.location.path().substring(1);
     this.httpClient = httpClient;
+    this.userService = this.userDataService.getId();
   }
 
   fetchData(): Observable<any> {
@@ -104,8 +103,7 @@ export class AppComponent implements OnInit {
     });
 
     if (this.loggedIn) {
-      this.userService.id = this.user?.id;
-      this.id = this.userService.id;
+      this.userDataService.setId(this.user?.id);
     }
   }
 

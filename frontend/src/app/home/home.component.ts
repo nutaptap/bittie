@@ -18,16 +18,18 @@ export class HomeComponent {
   local: any[] = [];
   private subscription: Subscription | undefined;
   formSubmitted = false;
-
-  userService = inject(UserDataService);
-  id: string | undefined = this.userService.id;
-
   urlForm = new FormGroup({
     destination: new FormControl('', Validators.required),
     custom: new FormControl(''),
   });
+  userService: string | undefined;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private userDataService: UserDataService
+  ) {
+    this.userService = this.userDataService.getId();
+  }
 
   ngOnInit() {
     this.fetchLocalStorageData();
