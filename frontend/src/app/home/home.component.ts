@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { userId } from '../user.signal';
+import { UserServiceService } from '../user-service.service';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +22,11 @@ export class HomeComponent {
     destination: new FormControl('', Validators.required),
     custom: new FormControl(''),
   });
-  userId = userId;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    public userId: UserServiceService
+  ) {}
 
   ngOnInit() {
     this.fetchLocalStorageData();

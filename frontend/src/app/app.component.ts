@@ -11,7 +11,7 @@ import {
   SocialUser,
   GoogleSigninButtonModule,
 } from '@abacritt/angularx-social-login';
-import { userId } from './user.signal';
+import { UserServiceService } from './user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -36,13 +36,13 @@ export class AppComponent implements OnInit {
   currentUrl: string = '';
   customUrl: string | null = null;
   idUrl: string | null = null;
-  userId = userId;
 
   constructor(
     private location: Location,
     private authService: SocialAuthService,
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    public userId: UserServiceService
   ) {
     this.currentUrl = this.location.path().substring(1);
     this.httpClient = httpClient;
@@ -101,8 +101,8 @@ export class AppComponent implements OnInit {
       this.redirect();
     });
 
-    if (this.loggedIn) {
-      this.userId.set(this.user?.id);
+    if (this.loggedIn && this.user !== undefined) {
+      this.userId.setUser(this.user.id);
     }
   }
 
@@ -110,6 +110,6 @@ export class AppComponent implements OnInit {
     this.user = undefined;
     this.loggedIn = false;
     sessionStorage.removeItem('user');
-    location.reload();
+    this.userId.clearUser();
   }
 }
