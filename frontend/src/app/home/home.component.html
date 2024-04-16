@@ -50,8 +50,8 @@
     </div>
   </form>
   <article>
-    @if(this.local.length > 0) {
-    <div *ngFor="let element of local">
+    @if(this.data.length > 0) {
+    <div *ngFor="let element of data">
       <div class="link-container">
         <button class="link-button">bittie.eu/{{ element.custom_url }}</button>
         <button
@@ -93,5 +93,4 @@
 
     }
   </article>
-  <p>{{ userId.user() }}</p>
 </main>

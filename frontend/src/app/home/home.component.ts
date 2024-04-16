@@ -52,10 +52,34 @@ export class HomeComponent {
         if (dataString) {
           const data = JSON.parse(dataString);
           this.local.push(data);
+
+          if (this.userId.user()) {
+            this.updateUrlMapping(data.id, Number(this.userId.user()));
+          }
         }
       }
     }
     console.log('Local data fetched:', this.local);
+  }
+
+  updateUrlMapping(id: number, userId: number) {
+    this.httpClient
+      .patch(`http://localhost:1238/${id}`, { user_id: userId })
+      .subscribe({
+        next: (response) => {
+          console.log('URL mapping updated:', response);
+
+          this.removeFromLocalStorage(id);
+        },
+        error: (error) => {
+          console.error('Error updating URL mapping:', error);
+          console.log(userId);
+        },
+      });
+  }
+
+  removeFromLocalStorage(id: number) {
+    localStorage.removeItem(String(id));
   }
 
   fetchData() {
@@ -65,6 +89,16 @@ export class HomeComponent {
         next: (data) => {
           this.data = data;
           console.log('Data fetched:', this.data);
+
+          const userId = Number(this.userId.user());
+          if (userId) {
+            this.data = this.data.filter((item) => {
+              console.log('user_id:', item.user_id, 'userId:', userId);
+              return item.user_id === userId;
+            });
+          }
+
+          console.log('Filtered data:', this.data);
         },
         error: (error) => {
           console.error('Error fetching data:', error);
