@@ -19,9 +19,13 @@ import { LogoutComponent } from '../logout/logout.component';
 export class HeaderComponent {
   @Input() loggedIn = false;
   @Input() photoURL: string | undefined;
-  logoutModal = true;
+  logoutModal = false;
 
   constructor(public router: Router) {}
+
+  ngOnInit(): void {
+    console.log(this.photoURL);
+  }
 
   handleModal() {
     this.logoutModal = !this.logoutModal;

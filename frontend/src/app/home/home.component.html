@@ -82,7 +82,7 @@
         </button>
       </div>
     </div>
-    }
+    } @if(userId.user() === undefined) {
 
     <div class="sign-up">
       <span>
@@ -90,6 +90,8 @@
         to edit your links</span
       >
     </div>
+
+    }
   </article>
   <p>{{ userId.user() }}</p>
 </main>

@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
     if (storedUser) {
       this.user = JSON.parse(storedUser);
       this.loggedIn = true;
+      console.log(this.user);
     }
 
     this.authService.authState.subscribe((user) => {
@@ -91,6 +92,7 @@ export class AppComponent implements OnInit {
       sessionStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/']).then(() => {
         location.reload();
+        console.log(this.user);
       });
     });
 
