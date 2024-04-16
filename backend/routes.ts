@@ -19,11 +19,15 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { custom_url, destination_url } = req.body;
+    const { custom_url, destination_url, user_id } = req.body;
 
-    const requestData = custom_url
-      ? [{ custom_url, destination_url }]
-      : [{ destination_url }];
+    const requestData = [
+      {
+        custom_url: custom_url ?? null,
+        destination_url: destination_url,
+        user_id: user_id ?? null,
+      },
+    ];
 
     const { data, error } = await supabase
       .from("url_mappings")
