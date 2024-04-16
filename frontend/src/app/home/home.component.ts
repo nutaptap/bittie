@@ -74,8 +74,9 @@ export class HomeComponent {
 
   postData(destination: string, custom?: string) {
     const postData = {
-      custom_url: custom || undefined,
+      custom_url: custom ?? null,
       destination_url: destination,
+      user_id: this.userId.user() ?? null,
     };
     this.subscription = this.httpClient
       .post('http://localhost:1238/', postData)
