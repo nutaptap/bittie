@@ -113,5 +113,6 @@ export class AppComponent implements OnInit {
     this.loggedIn = false;
     sessionStorage.removeItem('user');
     this.userId.clearUser();
+    location.reload();
   }
 }

@@ -15,6 +15,7 @@ import { UserServiceService } from '../user-service.service';
 })
 export class HomeComponent {
   data: any[] = [];
+  filteredData: any[] = [];
   local: any[] = [];
   private subscription: Subscription | undefined;
   formSubmitted = false;
@@ -54,7 +55,7 @@ export class HomeComponent {
           this.local.push(data);
 
           if (this.userId.user()) {
-            this.updateUrlMapping(data.id, Number(this.userId.user()));
+            this.updateUserId(data.id, Number(this.userId.user()));
           }
         }
       }
@@ -62,7 +63,7 @@ export class HomeComponent {
     console.log('Local data fetched:', this.local);
   }
 
-  updateUrlMapping(id: number, userId: number) {
+  updateUserId(id: number, userId: number) {
     this.httpClient
       .patch(`http://localhost:1238/${id}`, { user_id: userId })
       .subscribe({
@@ -92,7 +93,7 @@ export class HomeComponent {
 
           const userId = Number(this.userId.user());
           if (userId) {
-            this.data = this.data.filter((item) => {
+            this.filteredData = this.data.filter((item) => {
               console.log('user_id:', item.user_id, 'userId:', userId);
               return item.user_id === userId;
             });
@@ -117,11 +118,15 @@ export class HomeComponent {
       .subscribe({
         next: (response: any) => {
           console.log('Post succesful: ', response.data);
-          this.saveData(
-            response.data.id,
-            response.data.destination_url,
-            response.data.custom_url || undefined
-          );
+          if (!this.userId.user()) {
+            this.saveData(
+              response.data.id,
+              response.data.destination_url,
+              response.data.custom_url || undefined
+            );
+          } else {
+            this.fetchData();
+          }
         },
         error: (error) => {
           console.error('Error posing data: ', error);
@@ -138,8 +143,9 @@ export class HomeComponent {
     };
 
     const saveDataString = JSON.stringify(saveData);
-
     localStorage.setItem(String(id), saveDataString);
+    this.local = [];
+    this.fetchLocalStorageData();
   }
 
   submitForm() {
