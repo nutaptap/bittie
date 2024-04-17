@@ -45,7 +45,11 @@ export class HeaderComponent {
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     const container = document.querySelector('.container');
-    if (container && !container.contains(event.target as Node)) {
+    if (
+      container &&
+      !container.contains(event.target as Node) &&
+      this.logoutModal
+    ) {
       this.handleModal();
     }
   }
