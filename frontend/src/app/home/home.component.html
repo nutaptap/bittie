@@ -12,13 +12,13 @@
           required
           class="{{
             urlForm.get('destination')?.hasError('required') &&
-            (urlForm.get('destination')?.touched || formSubmitted)
+            urlForm.get('destination')?.touched
               ? 'error'
               : ''
           }}"
         />
         @if(urlForm.get('destination')?.hasError('required') &&
-        urlForm.get('destination')?.touched || formSubmitted) {
+        urlForm.get('destination')?.touched) {
         <span class="error-message">Add a valid url</span>
         } @else {<span></span>}
       </div>

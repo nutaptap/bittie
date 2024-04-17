@@ -132,6 +132,7 @@ export class HomeComponent {
           console.error('Error posing data: ', error);
         },
       });
+    this.urlForm.reset();
   }
 
   saveData(id: number, destination: string, custom?: string) {
@@ -156,11 +157,9 @@ export class HomeComponent {
         this.urlForm.value.destination!,
         this.urlForm.value.custom || undefined
       );
-      return false;
     } else {
       console.log('Missing destination url');
       this.formSubmitted = true;
-      return false;
     }
   }
 
