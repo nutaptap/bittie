@@ -173,3 +173,16 @@ a {
     color: black;
   }
 }
+
+.modal-backdrop {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8580801e;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  backdrop-filter: blur(0.2px);
+}

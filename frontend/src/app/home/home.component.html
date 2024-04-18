@@ -53,7 +53,7 @@
     @if(this.filteredData.length > 0) {
     <div *ngFor="let element of filteredData">
       <div class="link-container">
-        <button class="link-button">
+        <button class="link-button" (click)="handleClick(element.id)">
           bittie.eu/{{ element.custom_url || element.id }}
         </button>
         <button
@@ -129,4 +129,13 @@
 
     }
   </article>
+  @if(this.editModal) {
+  <div class="modal-backdrop" (click)="handleModal()">
+    <app-edit-url
+      [id]="selectedId"
+      [modal]="editModal"
+      (modalEvent)="handleModal($event)"
+    />
+  </div>
+  }
 </main>

@@ -5,11 +5,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserServiceService } from '../user-service.service';
+import { EditUrlComponent } from '../edit-url/edit-url.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, EditUrlComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
@@ -23,6 +24,8 @@ export class HomeComponent {
     destination: new FormControl('', Validators.required),
     custom: new FormControl(''),
   });
+  selectedId: number | undefined = undefined;
+  editModal = false;
 
   constructor(
     private httpClient: HttpClient,
@@ -160,6 +163,17 @@ export class HomeComponent {
     } else {
       console.log('Missing destination url');
       this.formSubmitted = true;
+    }
+  }
+
+  handleClick(id: string) {
+    this.selectedId = Number(id);
+    this.editModal = !this.editModal;
+  }
+
+  handleModal(event: void) {
+    if (this.editModal) {
+      this.editModal = !this.editModal;
     }
   }
 

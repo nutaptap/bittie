@@ -1,0 +1,23 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8580801e;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  backdrop-filter: blur(0.2px);
+}
+
+article {
+  background-color: var(--seashell);
+  border-radius: 10px;
+  padding: 25px 18px;
+  box-shadow: -3px -3px 9px #ffffff3a, 5px 5px 15px #5e687931;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
