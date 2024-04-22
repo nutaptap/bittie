@@ -51,15 +51,11 @@ router.post("/", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { user_id } = req.body;
-
-    if (!user_id) {
-      return res.status(400).json({ error: "Missing user_id in request body" });
-    }
+    const { user_id, custom_url, destination_url } = req.body;
 
     const { data, error } = await supabase
       .from("url_mappings")
-      .update({ user_id })
+      .update({ user_id, custom_url, destination_url })
       .eq("id", id)
       .select("*");
 
@@ -74,6 +70,34 @@ router.patch("/:id", async (req, res) => {
     }
 
     res.json({ message: "Data updated successfully", data: updatedData });
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({ error: (error as Error).message || "An unknown error occurred" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const { data, error } = await supabase
+      .from("url_mappings")
+      .delete()
+      .eq("id", id)
+      .select("*");
+
+    if (error) {
+      throw error;
+    }
+
+    const deletedData = data[0];
+
+    if (!deletedData) {
+      return res.status(404).json({ error: "URL mapping not found" });
+    }
+
+    res.json({ message: "Data deleted successfully", data: deletedData });
   } catch (error: any) {
     res
       .status(500)
