@@ -1,23 +1,95 @@
-.container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #8580801e;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  backdrop-filter: blur(0.2px);
-}
-
 article {
   background-color: var(--seashell);
   border-radius: 10px;
-  padding: 25px 18px;
+  padding: 65px;
   box-shadow: -3px -3px 9px #ffffff3a, 5px 5px 15px #5e687931;
   width: 400px;
-  height: 400px;
+  height: 320px;
   display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
+form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  color: var(--eerie-black);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  gap: 5px;
+
+  div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    span {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+input {
+  background-color: var(--seashell);
+  color: var(--eerie-black);
+  letter-spacing: 1px;
+  border: none;
+  outline: 1px solid var(--davys-gray);
+  padding: 8px 15px;
+  border-radius: 10px;
+  box-shadow: inset -5px -5px 9px #ffffff73, inset 3px 3px 15px #5e68794d;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: 1px solid var(--eerie-black);
+  background-color: var(--lighter);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 65px;
+  gap: 25px;
+}
+
+button {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  cursor: pointer;
+  color: var(--eerie-black);
+  letter-spacing: 1.8px;
+  font-size: 1rem;
+  padding: 8px 12px;
+  background-color: var(--seashell);
+  border-radius: 50px;
+  border: var(--royal-purple) 1px solid;
+  transition: all 0.3s ease-in-out;
+  color: var(--eerie-black);
+  letter-spacing: 1.2px;
+}
+
+button:hover {
+  background-color: var(--light);
+  color: black;
+}
+
+.remove-button {
+  border: var(--light-coral) 1px solid;
 }
