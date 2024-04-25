@@ -181,7 +181,7 @@ a {
   align-items: center;
   justify-content: center;
   background-color: #8580801e;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   backdrop-filter: blur(0.2px);
