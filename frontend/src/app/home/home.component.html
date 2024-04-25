@@ -59,7 +59,7 @@
         <button
           class="copy-button"
           [attr.data-custom]="element.destination_url"
-          (click)="copyData(element.destination_url)"
+          (click)="copyData(element.custom_url, element.id)"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@
         <button
           class="copy-button"
           [attr.data-custom]="element.destination_url"
-          (click)="copyData(element.destination_url)"
+          (click)="copyData(element.custom_url, element.id)"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

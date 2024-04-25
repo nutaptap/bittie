@@ -37,11 +37,14 @@ export class HomeComponent {
     this.fetchData();
   }
 
-  copyData(data: any) {
+  copyData(custom_url: string | undefined, id: string) {
     navigator.clipboard
-      .writeText(data)
+      .writeText('http://localhost:4200/' + (custom_url ? custom_url : id))
       .then(() => {
-        console.log('Data copied to clipboard:', data);
+        console.log(
+          'Data copied to clipboard:',
+          'http://localhost:4200/' + (custom_url ? custom_url : id)
+        );
       })
       .catch((error) => {
         console.error('Unable to copy data to clipboard:', error);
