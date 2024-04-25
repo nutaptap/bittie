@@ -6,6 +6,7 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserServiceService } from '../user-service.service';
 import { EditUrlComponent } from '../edit-url/edit-url.component';
+import JSConfetti from 'js-confetti';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,8 @@ export class HomeComponent {
   });
   selectedId: number | undefined = undefined;
   editModal = false;
+  customError = false;
+  jsConfetti = new JSConfetti();
 
   constructor(
     private httpClient: HttpClient,
@@ -124,6 +127,7 @@ export class HomeComponent {
       .subscribe({
         next: (response: any) => {
           console.log('Post succesful: ', response.data);
+          this.customError = false;
           if (!this.userId.user()) {
             this.saveData(
               response.data.id,
@@ -133,12 +137,22 @@ export class HomeComponent {
           } else {
             this.fetchData();
           }
+          this.jsConfetti.addConfetti({
+            confettiColors: ['#a17ac5', '#ed7474ff', '#c6ccf7'],
+          });
+          this.urlForm.reset();
         },
         error: (error) => {
-          console.error('Error posing data: ', error);
+          if (
+            error.error.error.includes(
+              'duplicate key value violates unique constraint'
+            )
+          ) {
+            console.log('Custom url already taken!');
+            this.customError = true;
+          }
         },
       });
-    this.urlForm.reset();
   }
 
   saveData(id: number, destination: string, custom?: string) {

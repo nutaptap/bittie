@@ -32,14 +32,14 @@ div {
   flex-direction: row;
   align-items: center;
 
-  span {
-    font-size: 1.5rem;
-    margin-right: 10px;
-  }
-
   input {
     margin-bottom: 0;
   }
+}
+
+.bittie {
+  font-size: 1.5rem;
+  margin-right: 10px;
 }
 
 label,
@@ -102,7 +102,8 @@ button:hover {
   }
 }
 
-.destination-container {
+.destination-container,
+.custom-container {
   position: relative;
 }
 
@@ -119,6 +120,7 @@ button:hover {
   left: 360px;
   top: 24px;
   min-width: 120px;
+  text-align: center;
 }
 
 .error {
@@ -169,6 +171,7 @@ article {
 
 a {
   cursor: pointer;
+  color: var(--davys-gray);
   text-decoration: underline;
   transition: all 0.2s ease-in-out;
 }

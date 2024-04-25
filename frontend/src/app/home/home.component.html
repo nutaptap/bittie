@@ -23,7 +23,7 @@
         } @else {<span></span>}
       </div>
       <div class="custom-container">
-        <span>bittie.eu /</span>
+        <span class="bittie">bittie.eu /</span>
         <div>
           <label for="custom">custom link (optional)</label>
           <input
@@ -31,8 +31,12 @@
             id="custom"
             name="custom"
             formControlName="custom"
+            class="{{ customError ? 'error' : '' }}"
           />
         </div>
+        @if(customError) {
+        <span class="error-message">Link taken</span>
+        }
       </div>
       <button type="submit">
         <svg
@@ -122,7 +126,7 @@
 
     <div class="sign-up">
       <span>
-        <a>sign up</a>
+        <a href="/login;destination=signup">sign up</a>
         to edit your links</span
       >
     </div>
