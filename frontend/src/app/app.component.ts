@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   fetchData(): Observable<any> {
-    return this.httpClient.get('http://localhost:1238/');
+    return this.httpClient.get('https://bittie-production.up.railway.app/');
   }
 
   findCustom() {

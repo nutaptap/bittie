@@ -35,16 +35,18 @@ export class EditUrlComponent implements OnInit {
   }
 
   fetchData() {
-    this.subscription = this.http.get<any>('http://localhost:1238/').subscribe({
-      next: (data) => {
-        this.data = data;
-        console.log(data);
-        this.filterUrl();
-      },
-      error: (error) => {
-        console.error('Error fetching data:', error);
-      },
-    });
+    this.subscription = this.http
+      .get<any>('https://bittie-production.up.railway.app/')
+      .subscribe({
+        next: (data) => {
+          this.data = data;
+          console.log(data);
+          this.filterUrl();
+        },
+        error: (error) => {
+          console.error('Error fetching data:', error);
+        },
+      });
   }
 
   filterUrl() {
@@ -77,30 +79,32 @@ export class EditUrlComponent implements OnInit {
     const destinationUrl = this.editForm.get('destination')?.value;
     const customUrl = this.editForm.get('custom')?.value;
     this.http
-      .patch(`http://localhost:1238/${this.id}`, {
+      .patch(`https://bittie-production.up.railway.app/${this.id}`, {
         custom_url: customUrl,
         destination_url: destinationUrl,
       })
       .subscribe({
         next: (response) => {
           console.log('URL mapping updated:', response);
+          location.reload();
         },
         error: (error) => {
           console.error('Error updating URL mapping:', error);
         },
       });
-    location.reload();
   }
 
   deleteUrl() {
-    this.http.delete(`http://localhost:1238/${this.id}`).subscribe({
-      next: (response) => {
-        console.log('URL mapping deleted:', response);
-      },
-      error: (error) => {
-        console.error('Error deleting URL mapping:', error);
-      },
-    });
-    location.reload();
+    this.http
+      .delete(`https://bittie-production.up.railway.app/${this.id}`)
+      .subscribe({
+        next: (response) => {
+          console.log('URL mapping deleted:', response);
+          location.reload();
+        },
+        error: (error) => {
+          console.error('Error deleting URL mapping:', error);
+        },
+      });
   }
 }

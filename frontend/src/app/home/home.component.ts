@@ -42,11 +42,15 @@ export class HomeComponent {
 
   copyData(custom_url: string | undefined, id: string) {
     navigator.clipboard
-      .writeText('http://localhost:4200/' + (custom_url ? custom_url : id))
+      .writeText(
+        'https://bittie-production.up.railway.app/' +
+          (custom_url ? custom_url : id)
+      )
       .then(() => {
         console.log(
           'Data copied to clipboard:',
-          'http://localhost:4200/' + (custom_url ? custom_url : id)
+          'https://bittie-production.up.railway.app/' +
+            (custom_url ? custom_url : id)
         );
       })
       .catch((error) => {
@@ -74,7 +78,9 @@ export class HomeComponent {
 
   updateUserId(id: number, userId: number) {
     this.httpClient
-      .patch(`http://localhost:1238/${id}`, { user_id: userId })
+      .patch(`https://bittie-production.up.railway.app/${id}`, {
+        user_id: userId,
+      })
       .subscribe({
         next: (response) => {
           console.log('URL mapping updated:', response);
@@ -94,7 +100,7 @@ export class HomeComponent {
 
   fetchData() {
     this.subscription = this.httpClient
-      .get<any[]>('http://localhost:1238/')
+      .get<any[]>('https://bittie-production.up.railway.app/')
       .subscribe({
         next: (data) => {
           this.data = data;
@@ -123,7 +129,7 @@ export class HomeComponent {
       user_id: this.userId.user() ?? null,
     };
     this.subscription = this.httpClient
-      .post('http://localhost:1238/', postData)
+      .post('https://bittie-production.up.railway.app/', postData)
       .subscribe({
         next: (response: any) => {
           console.log('Post succesful: ', response.data);
