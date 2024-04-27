@@ -42,15 +42,11 @@ export class HomeComponent {
 
   copyData(custom_url: string | undefined, id: string) {
     navigator.clipboard
-      .writeText(
-        'https://bittie-production.up.railway.app/' +
-          (custom_url ? custom_url : id)
-      )
+      .writeText('https://bittie.eu/' + (custom_url ? custom_url : id))
       .then(() => {
         console.log(
           'Data copied to clipboard:',
-          'https://bittie-production.up.railway.app/' +
-            (custom_url ? custom_url : id)
+          'https://bittie.eu/' + (custom_url ? custom_url : id)
         );
       })
       .catch((error) => {
