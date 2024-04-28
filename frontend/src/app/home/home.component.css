@@ -144,6 +144,7 @@ article {
 
 .link-button {
   width: 300px;
+  overflow: hidden;
 }
 
 .copy-button {

@@ -40,7 +40,6 @@ export class EditUrlComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.data = data;
-          console.log(data);
           this.filterUrl();
         },
         error: (error) => {
@@ -53,7 +52,6 @@ export class EditUrlComponent implements OnInit {
     this.filteredData = this.data.filter((element: any) => {
       return element.id === this.id;
     });
-    console.log(this.filteredData);
     this.editForm.patchValue({
       destination: this.filteredData[0].destination_url,
       custom: this.filteredData[0].custom_url || this.filteredData[0].id,
@@ -80,7 +78,7 @@ export class EditUrlComponent implements OnInit {
     const customUrl = this.editForm.get('custom')?.value;
     this.http
       .patch(`https://bittie-production.up.railway.app/${this.id}`, {
-        custom_url: customUrl,
+        custom_url: customUrl ? customUrl.split(' ').join('') : null,
         destination_url: destinationUrl,
       })
       .subscribe({

@@ -36,8 +36,8 @@ export class HomeComponent {
   ) {}
 
   ngOnInit() {
-    this.fetchLocalStorageData();
     this.fetchData();
+    this.fetchLocalStorageData();
   }
 
   copyData(custom_url: string | undefined, id: string) {
@@ -69,7 +69,6 @@ export class HomeComponent {
         }
       }
     }
-    console.log('Local data fetched:', this.local);
   }
 
   updateUserId(id: number, userId: number) {
@@ -79,13 +78,11 @@ export class HomeComponent {
       })
       .subscribe({
         next: (response) => {
-          console.log('URL mapping updated:', response);
-
           this.removeFromLocalStorage(id);
+          location.reload();
         },
         error: (error) => {
           console.error('Error updating URL mapping:', error);
-          console.log(userId);
         },
       });
   }
@@ -100,17 +97,13 @@ export class HomeComponent {
       .subscribe({
         next: (data) => {
           this.data = data;
-          console.log('Data fetched:', this.data);
 
           const userId = Number(this.userId.user());
           if (userId) {
             this.filteredData = this.data.filter((item) => {
-              console.log('user_id:', item.user_id, 'userId:', userId);
               return item.user_id === userId;
             });
           }
-
-          console.log('Filtered data:', this.data);
         },
         error: (error) => {
           console.error('Error fetching data:', error);
@@ -120,7 +113,7 @@ export class HomeComponent {
 
   postData(destination: string, custom?: string) {
     const postData = {
-      custom_url: custom ?? null,
+      custom_url: custom ? custom.split(' ').join('') : null,
       destination_url: destination,
       user_id: this.userId.user() ?? null,
     };
@@ -128,7 +121,6 @@ export class HomeComponent {
       .post('https://bittie-production.up.railway.app/', postData)
       .subscribe({
         next: (response: any) => {
-          console.log('Post succesful: ', response.data);
           this.customError = false;
           if (!this.userId.user()) {
             this.saveData(
@@ -173,7 +165,6 @@ export class HomeComponent {
 
   submitForm() {
     if (this.urlForm.value.destination !== '') {
-      console.log('Url created', this.urlForm.value.destination);
       this.formSubmitted = true;
       this.postData(
         this.urlForm.value.destination!,

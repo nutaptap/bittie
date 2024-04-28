@@ -17,6 +17,6 @@ export const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
-    title: 'not found',
+    title: 'bittie',
   },
 ];
