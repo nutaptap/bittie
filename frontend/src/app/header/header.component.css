@@ -90,3 +90,13 @@ button:hover {
   top: 60px;
   right: 0;
 }
+
+#bittie-logo {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  #bittie-logo {
+    display: none;
+  }
+}

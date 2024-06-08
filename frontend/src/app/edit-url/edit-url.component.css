@@ -93,3 +93,13 @@ button:hover {
 .remove-button {
   border: var(--light-coral) 1px solid;
 }
+
+@media (max-width: 600px) {
+  article {
+    width: 300px;
+  }
+}
+
+.bittie-url {
+  white-space: nowrap;
+}

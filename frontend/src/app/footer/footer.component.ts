@@ -21,7 +21,6 @@ import { ContactComponent } from '../contact/contact.component';
         </svg>
         <span>contact</span>
       </button>
-      <span class="nuria"> Coded with <span>♥️</span> by Nuria </span>
       @if(this.contactModal) {
       <div class="modal-backdrop" (click)="handleModal()">
         <app-contact />
